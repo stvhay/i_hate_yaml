@@ -1,0 +1,25 @@
+version = "3.9"
+
+[services.web]
+image = "nginx:latest"
+ports = ["80:80"]
+volumes = ["webdata:/usr/share/nginx/html"]
+networks = ["frontend"]
+
+[services.db]
+image = "postgres:latest"
+volumes = ["dbdata:/var/lib/postgresql/data"]
+networks = ["backend"]
+
+[services.db.environment]
+POSTGRES_USER = "user"
+POSTGRES_PASSWORD = "password"
+
+[volumes]
+webdata = {}
+dbdata = {}
+
+[networks]
+frontend = {}
+backend = {}
+
